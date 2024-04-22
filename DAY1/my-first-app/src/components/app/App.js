@@ -1,6 +1,7 @@
 import "./App.css";
 import React from "react";
 import Message from "../message/message.component";
+
 class App extends React.Component {
   messages = [
     {
@@ -27,11 +28,11 @@ class App extends React.Component {
   ];
   render() {
     return (
-      <>
+      <div className="row">
         {this.messages.map(m => (
           <Message messagedetails={m} />
         ))}
-      </>
+      </div>
     );
   }
 }
