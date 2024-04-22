@@ -6,11 +6,20 @@
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.7.0/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.7.0/react-dom.js"></script>
+    <style>
+      .header {
+        border: 2px solid red;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
     <script>
-      var h1Element = React.createElement("h1", null, "Hello React !");
+      var h1Element = React.createElement(
+        "h1",
+        { id: "header", className: "header" },
+        "Hello React !",
+      );
       var pElement = React.createElement("p", null, "This is a para !");
       var sectionElement = React.createElement("section", null, [
         h1Element,

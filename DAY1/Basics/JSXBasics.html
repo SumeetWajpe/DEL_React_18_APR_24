@@ -7,12 +7,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.7.0/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.7.0/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+    <style>
+      .header {
+        border: 2px solid red;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="text/jsx">
       var sectionElement = (
-        <section>
+        <section className="header">
           <h1>Hello JSX !</h1>
           <p>This is a para !</p>
         </section>
