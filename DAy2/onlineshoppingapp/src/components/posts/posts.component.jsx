@@ -8,18 +8,26 @@ export default class Posts extends Component {
       .then(res => this.setState({ posts: res.data }));
   }
   render() {
+    let contentToBerendered = null;
+
+    if (this.state.posts.length) {
+      contentToBerendered = (
+        <ul className="list-group">
+          {this.state.posts.map(p => (
+            <li className="list-group-item">{p.title}</li>
+          ))}
+        </ul>
+      );
+    } else {
+      contentToBerendered = "Loading..";
+    }
+
     return (
       <div>
         <header>
           <h1>All Posts</h1>
         </header>
-        <main>
-          <ul>
-            {this.state.posts.map(p => (
-              <li>{p.title}</li>
-            ))}
-          </ul>
-        </main>
+        <main>{contentToBerendered}</main>
       </div>
     );
   }
