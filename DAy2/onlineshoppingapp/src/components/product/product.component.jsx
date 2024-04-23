@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import Rating from "../rating/rating.component";
 
 export default class Product extends Component {
+  state = { currLikes: 100 };
+  IncrementLikes() {
+    console.log("U clicked !");
+    // this.props.productdetails.likes++;// For react props are readonly
+    //this.state.currLikes++; // For react state is immutable
+    this.setState({ currLikes: this.state.currLikes + 1 });
+  }
   render() {
     return (
       <div className="col-md-3">
@@ -21,10 +28,12 @@ export default class Product extends Component {
                 color="orange"
               />
             </p>
-            <button className="btn btn-primary">
+            <button
+              className="btn btn-primary"
+              onClick={() => this.IncrementLikes()}
+            >
               {" "}
-              {this.props.productdetails.likes}{" "}
-              <i className="fa-solid fa-thumbs-up"></i>
+              {this.state.currLikes} <i className="fa-solid fa-thumbs-up"></i>
             </button>
           </div>
         </div>
