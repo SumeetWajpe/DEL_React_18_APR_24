@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import Rating from "../rating/rating.component";
 
 export default class Product extends Component {
-  state = { currLikes: this.props.productdetails.likes };
+  constructor(props) {
+    super(props);
+    this.state = { currLikes: this.props.productdetails.likes };
+  }
+
   IncrementLikes() {
     console.log("U clicked !");
     // this.props.productdetails.likes++;// For react props are readonly
