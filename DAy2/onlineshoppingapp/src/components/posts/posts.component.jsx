@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios";
 export default class Posts extends Component {
-  state = { posts: [] };
+  state = { posts: [], error: "" };
   componentDidMount() {
     axios
       .get("https://jsonplaceholder.typicode.com/posts")
-      .then(res => this.setState({ posts: res.data }));
+      .then(res => {
+        if (res.status == 200) {
+          this.setState({ posts: res.data, error: "" });
+        } else {
+          throw new Error("Something went wrong !");
+        }
+      })
+      .catch(err => this.setState({ posts: [], error: err.message }));
   }
   render() {
     let contentToBerendered = null;
@@ -18,6 +25,8 @@ export default class Posts extends Component {
           ))}
         </ul>
       );
+    } else if (this.state.error) {
+      contentToBerendered = <p className="text-danger">{this.state.error}</p>;
     } else {
       contentToBerendered = "Loading..";
     }
