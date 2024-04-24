@@ -1,23 +1,23 @@
 import { useState } from "react";
 
 const Counter = () => {
-  const [counter, setCount] = useState({ count: 0 });
-  const [age, setAge] = useState(18);
+  const [state, setState] = useState({ count: 0, age: 18 });
+  //const [age, setAge] = useState(18); // destructuring in es6
 
   return (
     <>
-      <p>Count : {counter.count}</p>
+      <p>Count : {state.count}</p>
       <button
         className="btn btn-outline-primary"
-        onClick={() => setCount({ count: counter.count + 1 })}
+        onClick={() => setState({ ...state, count: state.count + 1 })}
       >
         Count ++
       </button>
       <hr />
-      <p>Age : {age}</p>
+      <p>Age : {state.age}</p>
       <button
         className="btn btn-outline-primary"
-        onClick={() => setAge(age + 10)}
+        onClick={() => setState({ ...state, age: state.age + 10 })}
       >
         Age ++
       </button>
