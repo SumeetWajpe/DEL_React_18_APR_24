@@ -1,7 +1,7 @@
 import ListOfProducts from "../listofproducts/listpfproducts.component";
 
 import React, { Component } from "react";
-import Posts from "../posts/posts.component";
+import Posts from "../posts/posts.functional";
 import Message from "../functional/message.functional";
 import Counter from "../functional/counter.component";
 
@@ -11,9 +11,9 @@ class App extends Component {
     return (
       <div>
         {/* <ListOfProducts /> */}
-        {/* <Posts /> */}
+        <Posts />
         {/* <Message msg={obj} /> */}
-        <Counter />
+        {/* <Counter /> */}
       </div>
     );
   }
