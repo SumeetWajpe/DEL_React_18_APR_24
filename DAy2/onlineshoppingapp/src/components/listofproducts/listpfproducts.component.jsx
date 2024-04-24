@@ -12,6 +12,7 @@ export default class ListOfProducts extends Component {
 
     this.setState({ products: newProductList });
   }
+
   async componentDidMount() {
     try {
       let res = await axios.get("http://localhost:3500/products");
@@ -25,6 +26,7 @@ export default class ListOfProducts extends Component {
       <div className="row">
         {this.state.products.map(p => (
           <Product
+            key={p.id}
             productdetails={p}
             DeleteAProduct={id => this.DeleteAProduct(id)}
           />
