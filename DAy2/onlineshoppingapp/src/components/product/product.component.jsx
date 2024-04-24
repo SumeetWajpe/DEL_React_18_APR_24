@@ -39,6 +39,14 @@ export default class Product extends Component {
               {" "}
               {this.state.currLikes} <i className="fa-solid fa-thumbs-up"></i>
             </button>
+            <button
+              className="btn btn-danger mx-1"
+              onClick={() =>
+                this.props.DeleteAProduct(this.props.productdetails.id)
+              }
+            >
+              <i class="fa-solid fa-trash"></i>
+            </button>
           </div>
         </div>
       </div>
