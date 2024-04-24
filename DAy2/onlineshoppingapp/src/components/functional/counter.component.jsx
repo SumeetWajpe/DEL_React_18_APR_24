@@ -2,15 +2,24 @@ import { useState } from "react";
 
 const Counter = () => {
   const [counter, setCount] = useState({ count: 0 });
+  const [age, setAge] = useState(18);
 
   return (
     <>
-      <p>{counter.count}</p>
+      <p>Count : {counter.count}</p>
       <button
         className="btn btn-outline-primary"
         onClick={() => setCount({ count: counter.count + 1 })}
       >
-        ++
+        Count ++
+      </button>
+      <hr />
+      <p>Age : {age}</p>
+      <button
+        className="btn btn-outline-primary"
+        onClick={() => setAge(age + 10)}
+      >
+        Age ++
       </button>
     </>
   );
