@@ -3,16 +3,17 @@ import ListOfProducts from "../listofproducts/listpfproducts.component";
 import React, { Component } from "react";
 import Posts from "../posts/posts.component";
 import Message from "../functional/message.functional";
+import Counter from "../functional/counter.component";
 
 class App extends Component {
   render() {
+    let obj = { message: "Hey" };
     return (
       <div>
         {/* <ListOfProducts /> */}
         {/* <Posts /> */}
-        <Message message="Hey" />
-        <Message message="Hello" />
-        <Message message="Hola" />
+        {/* <Message msg={obj} /> */}
+        <Counter />
       </div>
     );
   }
