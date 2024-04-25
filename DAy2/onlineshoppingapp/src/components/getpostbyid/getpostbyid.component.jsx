@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 
 const GetPostById = () => {
   const [postId, setPostId] = useState(1);
+  const [thePost, setThePost] = useState({});
+  const [error, setError] = useState("");
   useEffect(() => {
     (async () => {
       try {
@@ -11,10 +13,12 @@ const GetPostById = () => {
         );
 
         if (res.status == 200) {
-          console.log(res.data);
+          setThePost(res.data);
         }
       } catch (error) {
         console.log(error);
+        setThePost(null);
+        setError(error.message);
       }
     })();
   }, [postId]);
@@ -24,9 +28,15 @@ const GetPostById = () => {
         Post Id:{" "}
         <input
           type="text"
+          value={postId}
           onInput={e => setPostId(e.target.value.toString())}
         />{" "}
       </label>
+      {thePost ? (
+        <p>{thePost.title}</p>
+      ) : (
+        <p className="text-danger">{error}</p>
+      )}
     </div>
   );
 };
