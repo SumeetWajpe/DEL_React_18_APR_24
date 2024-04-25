@@ -1,37 +1,28 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Product from "../product/product.component";
 import axios from "axios";
-export default class ListOfProducts extends Component {
-  state = {
-    products: [],
-  };
+const ListOfProducts = () => {
+  const [productList, setProductList] = useState([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axios.get("http://localhost:3500/products");
 
-  DeleteAProduct(id) {
-    console.log("Deleting a product !", id);
-    let newProductList = this.state.products.filter(p => p.id !== id);
+        if (res.status == 200) {
+          setProductList(res.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+  return (
+    <div className="row">
+      {productList.map(product => (
+        <Product productdetails={product} key={product.id} />
+      ))}
+    </div>
+  );
+};
 
-    this.setState({ products: newProductList });
-  }
-
-  async componentDidMount() {
-    try {
-      let res = await axios.get("http://localhost:3500/products");
-      this.setState({ products: res.data });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  render() {
-    return (
-      <div className="row">
-        {this.state.products.map(p => (
-          <Product
-            key={p.id}
-            productdetails={p}
-            DeleteAProduct={id => this.DeleteAProduct(id)}
-          />
-        ))}
-      </div>
-    );
-  }
-}
+export default ListOfProducts;

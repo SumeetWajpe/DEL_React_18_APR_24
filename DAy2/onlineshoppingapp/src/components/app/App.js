@@ -10,8 +10,8 @@ class App extends Component {
     let obj = { message: "Hey" };
     return (
       <div>
-        {/* <ListOfProducts /> */}
-        <Posts />
+        <ListOfProducts />
+        {/* <Posts /> */}
         {/* <Message msg={obj} /> */}
         {/* <Counter /> */}
       </div>
