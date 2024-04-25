@@ -1,7 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 const NewProductRHF = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   return (
     <div>
       <h1>New Product</h1>
@@ -16,7 +20,14 @@ const NewProductRHF = () => {
         <div className="col-md-4">
           <div className="row">
             <label htmlFor="txtProductId">Id : </label>
-            <input type="number" id="txtProductId" {...register("id")} />
+            <input
+              type="number"
+              id="txtProductId"
+              {...register("id", { required: true })}
+            />
+            {errors.id && (
+              <p className="text-danger">Product Id is required !</p>
+            )}
           </div>
           <div className="row">
             <label htmlFor="txtProductTitle">Title : </label>
