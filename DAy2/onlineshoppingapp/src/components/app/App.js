@@ -9,12 +9,14 @@ import NewProduct from "../newproduct/newproduct.component";
 import NewProductRHF from "../newproduct/newproduct.reacthookform";
 
 // Router
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        {/* <a href="/">Home</a> | <a href="/posts">Posts</a> */}
+        <Link to="/">Home</Link> | <Link to="/posts">Posts</Link>
         <Routes>
           <Route path="/" element={<ListOfProducts />} />
           <Route path="/posts" element={<Posts />} />
