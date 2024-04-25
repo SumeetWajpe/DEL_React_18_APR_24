@@ -13,13 +13,14 @@ class App extends Component {
     let obj = { message: "Hey" };
     return (
       <div>
-        {/* <ListOfProducts /> */}
         {/* <Posts /> */}
         {/* <Message msg={obj} /> */}
         {/* <Counter /> */}
         {/* <GetPostById /> */}
         {/* <NewProduct /> */}
         <NewProductRHF />
+
+        <ListOfProducts />
       </div>
     );
   }
