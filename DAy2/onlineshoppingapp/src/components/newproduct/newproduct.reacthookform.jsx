@@ -5,7 +5,8 @@ const NewProductRHF = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+    reset,
+  } = useForm({ mode: "onChange" });
   return (
     <div>
       <h1>New Product</h1>
@@ -15,6 +16,7 @@ const NewProductRHF = () => {
           console.log("Submittted..");
           console.log(data);
           // add this as new product
+          reset();
         })}
       >
         <div className="col-md-4">
@@ -31,7 +33,27 @@ const NewProductRHF = () => {
           </div>
           <div className="row">
             <label htmlFor="txtProductTitle">Title : </label>
-            <input type="text" id="txtProductTitle" {...register("title")} />
+            <input
+              type="text"
+              id="txtProductTitle"
+              {...register("title", {
+                required: {
+                  value: true,
+                  message: "Title is required !",
+                },
+                maxLength: {
+                  value: 20,
+                  message: "Title cannot exceed 20 chars !",
+                },
+              })}
+            />
+            {errors.title && (
+              <p className="text-danger">
+                {errors.title.type === "maxLength"
+                  ? errors.title.message
+                  : errors.title.message}
+              </p>
+            )}
           </div>
           <div className="row">
             <label htmlFor="txtProductPrice">Price : </label>
