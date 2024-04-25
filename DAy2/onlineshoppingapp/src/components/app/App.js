@@ -8,20 +8,18 @@ import GetPostById from "../getpostbyid/getpostbyid.component";
 import NewProduct from "../newproduct/newproduct.component";
 import NewProductRHF from "../newproduct/newproduct.reacthookform";
 
+// Router
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 class App extends Component {
   render() {
-    let obj = { message: "Hey" };
     return (
-      <div>
-        {/* <Posts /> */}
-        {/* <Message msg={obj} /> */}
-        {/* <Counter /> */}
-        {/* <GetPostById /> */}
-        {/* <NewProduct /> */}
-        <NewProductRHF />
-
-        <ListOfProducts />
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<ListOfProducts />} />
+          <Route path="/posts" element={<Posts />} />
+        </Routes>
+      </BrowserRouter>
     );
   }
 }
