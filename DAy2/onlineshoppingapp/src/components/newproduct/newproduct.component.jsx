@@ -3,8 +3,7 @@ export default function NewProduct() {
   const [newproduct, setNewProduct] = useState({}); // the state controls the form/controls state
 
   function AddNewProduct(e) {
-    e.preventDefault(); // prevent the browser from reloading the page.
-    console.log(newproduct);
+    //e.preventDefault(); // prevent the browser from reloading the page.
   }
   return (
     <div>
@@ -16,6 +15,7 @@ export default function NewProduct() {
             <input
               type="number"
               id="txtProductId"
+              required
               onInput={e =>
                 setNewProduct({ ...newproduct, id: +e.target.value })
               }

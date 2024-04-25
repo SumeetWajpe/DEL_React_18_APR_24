@@ -6,6 +6,7 @@ import Message from "../functional/message.functional";
 import Counter from "../functional/counter.component";
 import GetPostById from "../getpostbyid/getpostbyid.component";
 import NewProduct from "../newproduct/newproduct.component";
+import NewProductRHF from "../newproduct/newproduct.reacthookform";
 
 class App extends Component {
   render() {
@@ -17,7 +18,8 @@ class App extends Component {
         {/* <Message msg={obj} /> */}
         {/* <Counter /> */}
         {/* <GetPostById /> */}
-        <NewProduct />
+        {/* <NewProduct /> */}
+        <NewProductRHF />
       </div>
     );
   }

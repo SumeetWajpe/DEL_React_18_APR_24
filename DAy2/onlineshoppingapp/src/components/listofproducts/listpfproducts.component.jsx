@@ -16,6 +16,7 @@ const ListOfProducts = () => {
       }
     })();
   }, []);
+
   return (
     <div className="row">
       {productList.map(product => (
