@@ -31,6 +31,11 @@ function Navbar() {
                 Posts
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/newproduct">
+                New Product
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

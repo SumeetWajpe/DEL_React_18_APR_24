@@ -2,17 +2,14 @@ import ListOfProducts from "../listofproducts/listpfproducts.component";
 
 import React, { Component } from "react";
 import Posts from "../posts/posts.functional";
-import Message from "../functional/message.functional";
-import Counter from "../functional/counter.component";
-import GetPostById from "../getpostbyid/getpostbyid.component";
-import NewProduct from "../newproduct/newproduct.component";
-import NewProductRHF from "../newproduct/newproduct.reacthookform";
 
 // Router
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import Navbar from "../navbar/navbar";
 import PostDetails from "../postdetails/postdetails.component";
 import ProductDetails from "../productdetails/productdetails.component";
+import { ToastContainer } from "react-toastify";
+import NewProductWithRHF from "../newproduct/newproduct.reacthookform";
 
 class App extends Component {
   render() {
@@ -23,6 +20,7 @@ class App extends Component {
         <Routes>
           <Route path="/" element={<ListOfProducts />} />
           <Route path="/productdetails/:id" element={<ProductDetails />} />
+          <Route path="/newproduct" element={<NewProductWithRHF />} />
 
           <Route path="/posts" element={<Posts />} />
           <Route path="/postdetails/:id" element={<PostDetails />} />
@@ -33,6 +31,17 @@ class App extends Component {
             }
           />
         </Routes>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          draggable
+          theme="light"
+        />
+        <ToastContainer />
       </BrowserRouter>
     );
   }

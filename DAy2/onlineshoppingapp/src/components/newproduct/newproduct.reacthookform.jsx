@@ -1,93 +1,163 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-const NewProductRHF = () => {
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const NewProductWithRHF = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
-  } = useForm({ mode: "onChange" });
+  } = useForm();
   return (
-    <div>
-      <h1>New Product</h1>
-      <form
-        className="container"
-        onSubmit={handleSubmit(data => {
-          console.log("Submittted..");
-          console.log(data);
-          // add this as new product
-          reset();
-        })}
-      >
-        <div className="col-md-4">
-          <div className="row">
-            <label htmlFor="txtProductId">Id : </label>
-            <input
-              type="number"
-              id="txtProductId"
-              {...register("id", { required: true })}
-            />
-            {errors.id && (
-              <p className="text-danger">Product Id is required !</p>
-            )}
+    <div className="row justify-content-center ">
+      <div className="col-md-6 border border-4 rounded-2">
+        <h2>Add New Product</h2>
+        <form
+          className="row"
+          onSubmit={handleSubmit(async formData => {
+            try {
+              console.log(formData);
+              let productToBeInserted = {
+                id: formData.ProductId,
+                name: formData.ProductTitle,
+                price: formData.ProductPrice,
+                rating: formData.ProductRating,
+                likes: formData.ProductLikes,
+                imageUrl: formData.ProductImageUrl,
+                description: formData.ProductDesc,
+              };
+              let response = await fetch("http://localhost:3500/products", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(productToBeInserted),
+              });
+              let message = await response.json();
+              if (message) {
+                toast.success(`${message.name} added successfully !`, {
+                  position: "top-right",
+                  autoClose: 3000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                });
+                navigate("/"); // redirect (pragramatically)
+              }
+            } catch (error) {
+              // make async call to server and send error
+              console.log(error);
+            }
+          })}
+        >
+          <div className="col-md-4">
+            <label> Id :</label>
           </div>
-          <div className="row">
-            <label htmlFor="txtProductTitle">Title : </label>
+          <div className="col-md-8">
             <input
               type="text"
-              id="txtProductTitle"
-              {...register("title", {
-                required: {
-                  value: true,
-                  message: "Title is required !",
-                },
-                maxLength: {
-                  value: 20,
-                  message: "Title cannot exceed 20 chars !",
-                },
+              className="form-control"
+              {...register("ProductId", {
+                required: "Product Id is required !",
               })}
             />
-            {errors.title && (
+            {errors.ProductId && (
               <p className="text-danger">
-                {errors.title.type === "maxLength"
-                  ? errors.title.message
-                  : errors.title.message}
+                {errors.ProductId.message?.toString()}
               </p>
             )}
           </div>
-          <div className="row">
-            <label htmlFor="txtProductPrice">Price : </label>
-            <input type="number" id="txtProductPrice" {...register("price")} />
+          <div className="col-md-4">
+            <label> Title :</label>
           </div>
-          <div className="row">
-            <label htmlFor="txtProductRating">Rating : </label>
-            <input
-              type="number"
-              id="txtProductRating"
-              {...register("rating")}
-            />
-          </div>
-          <div className="row">
-            <label htmlFor="txtProductLikes">Likes : </label>
-            <input type="number" {...register("likes")} />
-          </div>
-          <div className="row">
-            <label htmlFor="txtProductImageUrl">Image Url : </label>
+
+          <div className="col-md-8">
             <input
               type="text"
-              id="txtProductImageUrl"
-              {...register("imageUrl")}
+              className="form-control"
+              {...register("ProductTitle", {
+                required: "Product Title is required !",
+                maxLength: {
+                  value: 20,
+                  message: "You exceeded max length of 20 chars !",
+                },
+              })}
+            />
+            {errors.ProductTitle && (
+              <p className="text-danger">
+                {errors.ProductTitle.message?.toString()}
+              </p>
+            )}
+          </div>
+          <div className="col-md-4">
+            <label> Price :</label>
+          </div>
+
+          <div className="col-md-8">
+            <input
+              type="text"
+              className="form-control"
+              {...register("ProductPrice")}
             />
           </div>
-          <div className="row">
-            <label htmlFor="txtProductDesc">Description :</label>
-            <textarea id="txtProductDesc" cols="30" rows="5"></textarea>
+          <div className="col-md-4">
+            <label> Rating :</label>
           </div>
-          <button className="btn btn-success m-2">Add New Product</button>
-        </div>
-      </form>
+
+          <div className="col-md-8">
+            <input
+              type="text"
+              className="form-control"
+              {...register("ProductRating")}
+            />
+          </div>
+          <div className="col-md-4">
+            <label> Likes :</label>
+          </div>
+
+          <div className="col-md-8">
+            <input
+              type="text"
+              className="form-control"
+              {...register("ProductLikes")}
+            />
+          </div>
+          <div className="col-md-4">
+            <label> Image (url) :</label>
+          </div>
+
+          <div className="col-md-8">
+            <input
+              type="text"
+              className="form-control"
+              {...register("ProductImageUrl")}
+            />
+          </div>
+          <div className="col-md-4">
+            <label> Description :</label>
+          </div>
+
+          <div className="col-md-8">
+            <textarea
+              className="form-control"
+              cols={45}
+              rows={5}
+              {...register("ProductDesc")}
+            ></textarea>
+          </div>
+          <div className="row justify-content-center">
+            <div className="col-md-8 m-2">
+              <button className="btn btn-success">Add New Product</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
 
-export default NewProductRHF;
+export default NewProductWithRHF;
