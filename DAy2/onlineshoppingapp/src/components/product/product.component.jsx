@@ -1,17 +1,20 @@
 import React, { Component, useState } from "react";
 import Rating from "../rating/rating.component";
+import { Link } from "react-router-dom";
 
 const Product = props => {
   const [currLikes, setcurrLikes] = useState(props.productdetails.likes);
   return (
     <div className="col-md-3">
       <div className="card">
-        <img
-          src={props.productdetails.imageUrl}
-          alt={props.productdetails.name}
-          style={{ height: "150px" }}
-          className="card-img-top"
-        />
+        <Link to={`/productdetails/${props.productdetails.id}`}>
+          <img
+            src={props.productdetails.imageUrl}
+            alt={props.productdetails.name}
+            style={{ height: "150px" }}
+            className="card-img-top"
+          />
+        </Link>
         <div className="card-body">
           <h5 className="card-title">{props.productdetails.name}</h5>
           <p className="card-text">₹. {props.productdetails.price}</p>
