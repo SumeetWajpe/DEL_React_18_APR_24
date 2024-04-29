@@ -22,7 +22,7 @@ class App extends Component {
         <Routes>
           <Route path="/" element={<ListOfProducts />} />
           <Route path="/posts" element={<Posts />} />
-          <Route path="/postdetails" element={<PostDetails />} />
+          <Route path="/postdetails/:id" element={<PostDetails />} />
         </Routes>
       </BrowserRouter>
     );
