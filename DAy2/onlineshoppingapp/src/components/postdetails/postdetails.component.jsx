@@ -10,7 +10,7 @@ function PostDetails() {
     axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`).then(res => {
       setThePost(res.data);
     });
-  });
+  }, []);
   return (
     <div>
       <h2>Post Details for {id}</h2>
