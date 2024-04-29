@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Product = props => {
   const [currLikes, setcurrLikes] = useState(props.productdetails.likes);
   return (
-    <div className="col-md-3">
+    <div className="col-md-3 my-1">
       <div className="card">
         <Link to={`/productdetails/${props.productdetails.id}`}>
           <img
