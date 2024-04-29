@@ -11,6 +11,7 @@ import NewProductRHF from "../newproduct/newproduct.reacthookform";
 // Router
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import Navbar from "../navbar/navbar";
+import PostDetails from "../postdetails/postdetails.component";
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
         <Routes>
           <Route path="/" element={<ListOfProducts />} />
           <Route path="/posts" element={<Posts />} />
+          <Route path="/postdetails" element={<PostDetails />} />
         </Routes>
       </BrowserRouter>
     );

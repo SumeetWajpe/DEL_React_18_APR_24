@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
@@ -15,7 +16,9 @@ const Posts = () => {
       <main>
         <ul className="list-group">
           {posts.map(p => (
-            <li key={p.id}>{p.title}</li>
+            <li key={p.id} className="list-group-item">
+              <Link to="/postdetails">{p.title}</Link>
+            </li>
           ))}
         </ul>
       </main>
