@@ -10,13 +10,14 @@ import NewProductRHF from "../newproduct/newproduct.reacthookform";
 
 // Router
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import Navbar from "../navbar/navbar";
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         {/* <a href="/">Home</a> | <a href="/posts">Posts</a> */}
-        <Link to="/">Home</Link> | <Link to="/posts">Posts</Link>
+        <Navbar />
         <Routes>
           <Route path="/" element={<ListOfProducts />} />
           <Route path="/posts" element={<Posts />} />
