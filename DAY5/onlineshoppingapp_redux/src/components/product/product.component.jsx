@@ -1,7 +1,10 @@
 import React, { Component, useState } from "react";
 import Rating from "../rating/rating.component";
 import { useDispatch } from "react-redux";
-import { incrementLikes } from "../../redux/reducers/products.reducer";
+import {
+  deleteAProduct,
+  incrementLikes,
+} from "../../redux/reducers/products.reducer";
 import { Link } from "react-router-dom";
 
 const Product = props => {
@@ -30,7 +33,10 @@ const Product = props => {
             {props.productdetails.likes}{" "}
             <i className="fa-solid fa-thumbs-up"></i>
           </button>
-          <button className="btn btn-danger mx-1">
+          <button
+            className="btn btn-danger mx-1"
+            onClick={() => dispatch(deleteAProduct(props.productdetails.id))}
+          >
             <i className="fa-solid fa-trash"></i>
           </button>
         </div>

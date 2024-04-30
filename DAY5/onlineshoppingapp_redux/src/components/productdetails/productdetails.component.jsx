@@ -1,9 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import Rating from "../rating/rating.component";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { incrementLikes } from "../../redux/reducers/products.reducer";
 function ProductDetails() {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const products = useSelector(store => store.products);
   const theProduct = products.find(p => p.id == id);
 
@@ -17,7 +19,10 @@ function ProductDetails() {
         <Rating rating={theProduct.rating} color="orange" />
 
         <p>
-          <button className="btn btn-primary">
+          <button
+            className="btn btn-primary"
+            onClick={() => dispatch(incrementLikes(theProduct.id))}
+          >
             {theProduct.likes} <i className="fa-solid fa-thumbs-up"></i>
           </button>
         </p>

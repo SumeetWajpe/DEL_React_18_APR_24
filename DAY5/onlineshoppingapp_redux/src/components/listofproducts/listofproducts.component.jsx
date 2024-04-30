@@ -1,8 +1,15 @@
 import React, { Component, useEffect, useState } from "react";
 import Product from "../product/product.component";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { fetchAllProducts } from "../../redux/reducers/products.reducer";
 const ListOfProducts = () => {
   const productList = useSelector(store => store.products);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllProducts());
+  }, []);
 
   return (
     <div className="row">
