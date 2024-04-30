@@ -2,21 +2,21 @@ import React, { Component, useState } from "react";
 import Rating from "../rating/rating.component";
 import { useDispatch } from "react-redux";
 import { incrementLikes } from "../../redux/reducers/products.reducer";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Product = props => {
   const dispatch = useDispatch();
   return (
     <div className="col-md-3 my-1">
       <div className="card">
-        {/* <Link to={`/productdetails/${props.productdetails.id}`}> */}
-        <img
-          src={props.productdetails.imageUrl}
-          alt={props.productdetails.name}
-          style={{ height: "150px" }}
-          className="card-img-top"
-        />
-        {/* </Link> */}
+        <Link to={`/productdetails/${props.productdetails.id}`}>
+          <img
+            src={props.productdetails.imageUrl}
+            alt={props.productdetails.name}
+            style={{ height: "150px" }}
+            className="card-img-top"
+          />
+        </Link>
         <div className="card-body">
           <h5 className="card-title">{props.productdetails.name}</h5>
           <p className="card-text">₹. {props.productdetails.price}</p>
