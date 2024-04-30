@@ -88,9 +88,17 @@ const productSlice = createSlice({
     incrementLikes: (store, action) => {
       console.log("Within increment likes reducer !");
       // biz logic to update store
-      console.log(store);
-      console.log(action);
+      const id = action.payload;
+      let index = store.findIndex(p => p.id == id);
+      store[index].likes++; // immer handles store immutability
       return store;
+
+      // writting own logic for immutability
+      // return [
+      //   ...store.slice(0, index),
+      //   { ...store[index], likes: store[index].likes + 1 },
+      //   ...store.slice(index + 1),
+      // ];
     },
   },
 });
