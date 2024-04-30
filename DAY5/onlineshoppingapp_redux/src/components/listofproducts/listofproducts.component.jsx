@@ -8,7 +8,9 @@ const ListOfProducts = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAllProducts());
+    if (productList.length == 0) {
+      dispatch(fetchAllProducts());
+    }
   }, []);
 
   return (
