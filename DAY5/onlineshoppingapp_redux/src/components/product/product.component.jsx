@@ -1,8 +1,11 @@
 import React, { Component, useState } from "react";
 import Rating from "../rating/rating.component";
+import { useDispatch } from "react-redux";
+import { incrementLikes } from "../../redux/reducers/products.reducer";
 // import { Link } from "react-router-dom";
 
 const Product = props => {
+  const dispatch = useDispatch();
   return (
     <div className="col-md-3 my-1">
       <div className="card">
@@ -20,7 +23,10 @@ const Product = props => {
           <p className="card-text">
             <Rating rating={props.productdetails.rating} color="orange" />
           </p>
-          <button className="btn btn-primary">
+          <button
+            className="btn btn-primary"
+            onClick={() => dispatch(incrementLikes(props.productdetails.id))}
+          >
             {props.productdetails.likes}{" "}
             <i className="fa-solid fa-thumbs-up"></i>
           </button>

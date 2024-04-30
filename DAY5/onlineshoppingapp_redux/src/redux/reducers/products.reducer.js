@@ -88,6 +88,8 @@ const productSlice = createSlice({
     incrementLikes: (store, action) => {
       console.log("Within increment likes reducer !");
       // biz logic to update store
+      console.log(store);
+      console.log(action);
       return store;
     },
   },
