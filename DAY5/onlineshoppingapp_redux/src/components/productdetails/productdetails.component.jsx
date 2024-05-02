@@ -6,7 +6,7 @@ import { incrementLikes } from "../../redux/reducers/products.reducer";
 function ProductDetails() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const products = useSelector(store => store.products);
+  const products = useSelector(store => store.products.products);
   const theProduct = products.find(p => p.id == id);
 
   return (

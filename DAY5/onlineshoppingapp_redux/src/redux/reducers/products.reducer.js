@@ -1,12 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = []; // {products:[],loading:true,error:""}
+const initialState = { products: [], loading: true, error: "" };
 export const fetchAllProducts = createAsyncThunk(
   "users/fetchAllProducts",
-  async () => {
-    const response = await axios.get("http://localhost:3500/products");
-    return response.data;
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get("http://localhost:3500/products");
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
   },
 );
 const productSlice = createSlice({
@@ -17,8 +21,8 @@ const productSlice = createSlice({
       console.log("Within increment likes reducer !");
       // biz logic to update store
       const id = action.payload;
-      let index = store.findIndex(p => p.id == id);
-      store[index].likes++; // immer handles store immutability
+      let index = store.products.findIndex(p => p.id == id);
+      store.products[index].likes++; // immer handles store immutability
       return store;
 
       // writting own logic for immutability
@@ -29,16 +33,25 @@ const productSlice = createSlice({
       // ];
     },
     deleteAProduct: (store, action) => {
-      return store.filter(p => p.id != action.payload);
+      store.products = store.products.filter(p => p.id !== action.payload);
+      return store;
     },
     addNewProduct: (store, action) => {
-      store.push(action.payload);
+      store.products.push(action.payload);
       return store;
     },
   },
   extraReducers: builder => {
     builder.addCase(fetchAllProducts.fulfilled, (store, { payload }) => {
-      store = payload;
+      store.products = payload;
+      store.error = "";
+      store.loading = false;
+      return store;
+    });
+    builder.addCase(fetchAllProducts.rejected, (store, { payload }) => {
+      store.products = [];
+      store.loading = false;
+      store.error = payload;
       return store;
     });
   },
