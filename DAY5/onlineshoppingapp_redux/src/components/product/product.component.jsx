@@ -6,6 +6,10 @@ import {
   incrementLikes,
 } from "../../redux/reducers/products.reducer";
 import { Link } from "react-router-dom";
+import {
+  addProductToCart,
+  deleteProductFromCart,
+} from "../../redux/reducers/cart.reducer";
 
 const Product = props => {
   const dispatch = useDispatch();
@@ -39,6 +43,21 @@ const Product = props => {
           >
             <i className="fa-solid fa-trash"></i>
           </button>
+
+          <label>
+            {" "}
+            <input
+              type="checkbox"
+              onChange={e => {
+                if (e.target.checked) {
+                  dispatch(addProductToCart(props.productdetails));
+                } else if (e.target.checked == false) {
+                  dispatch(deleteProductFromCart(props.productdetails.id));
+                }
+              }}
+            />{" "}
+            Add To Cart
+          </label>
         </div>
       </div>
     </div>

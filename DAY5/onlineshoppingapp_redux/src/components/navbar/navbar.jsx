@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import CartCount from "../cart/cartcount.component";
 
 function Navbar() {
   return (
@@ -37,6 +38,9 @@ function Navbar() {
               </Link>
             </li>
           </ul>
+        </div>
+        <div className="d-flex justify-content-around align-items-center">
+          <CartCount />
         </div>
       </div>
     </nav>
