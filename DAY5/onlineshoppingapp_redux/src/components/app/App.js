@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "../navbar/navbar";
 import ProductDetails from "../productdetails/productdetails.component";
 import NewProductWithRHF from "../newproduct/newproduct.reacthookform";
+import CartSummary from "../cart/cartsummary.component";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
           <Route path="/" element={<ListOfProducts />} />
           <Route path="/productdetails/:id" element={<ProductDetails />} />
           <Route path="/newproduct" element={<NewProductWithRHF />} />
+          <Route path="/cartsummary" element={<CartSummary />} />
 
           <Route
             path="*"
