@@ -11,21 +11,29 @@ const ListOfProducts = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (products.length == 0) {
-      dispatch({ type: "PRODUCTS_FETCH_REQUESTED_ASYNC" });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (products.length == 0) {
+  //     dispatch({ type: "PRODUCTS_FETCH_REQUESTED_ASYNC" });
+  //   }
+  // }, []);
 
   if (error) return <h2>Something went wrong ! {error} </h2>;
 
-  if (loading) return <p>Loading...</p>;
+  // if (loading) return <p>Loading...</p>;
   return (
-    <div className="row">
-      {products.map(product => (
-        <Product productdetails={product} key={product.id} />
-      ))}
-    </div>
+    <>
+      <button
+        className="btn btn-secondary"
+        onClick={() => dispatch({ type: "PRODUCTS_FETCH_REQUESTED_ASYNC" })}
+      >
+        Get All Products
+      </button>
+      <div className="row">
+        {products.map(product => (
+          <Product productdetails={product} key={product.id} />
+        ))}
+      </div>
+    </>
   );
 };
 
