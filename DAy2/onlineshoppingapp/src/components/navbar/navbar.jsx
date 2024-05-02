@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CartCount from "../../../../../DAY5/onlineshoppingapp_redux/src/components/cart/cartcount.component";
 
 function Navbar() {
   return (
@@ -38,7 +37,6 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-         
         </div>
       </div>
     </nav>
