@@ -4,11 +4,11 @@ import React, { Component, Suspense } from "react";
 
 // Router
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-import Navbar from "../navbar/navbar";
 import PostDetails from "../postdetails/postdetails.component";
 import ProductDetails from "../productdetails/productdetails.component";
 import { ToastContainer } from "react-toastify";
 import NewProductWithRHF from "../newproduct/newproduct.reacthookform";
+import Login from "../login/login.component";
 const Posts = React.lazy(() => import("../posts/posts.functional"));
 
 class App extends Component {
@@ -16,9 +16,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         {/* <a href="/">Home</a> | <a href="/posts">Posts</a> */}
-        <Navbar />
         <Routes>
-          <Route path="/" element={<ListOfProducts />} />
+          <Route path="/" element={<Login />} />
           <Route path="/productdetails/:id" element={<ProductDetails />} />
           <Route path="/newproduct" element={<NewProductWithRHF />} />
 
