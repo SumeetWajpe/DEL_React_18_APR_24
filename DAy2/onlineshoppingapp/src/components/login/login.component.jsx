@@ -19,6 +19,7 @@ function Login() {
           onClick={() => {
             axios.get("http://localhost:3600/signin").then(res => {
               if (res.token) {
+                sessionStorage["token"] = res.token;
                 navigate("/dashboard");
               }
             });
