@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "../navbar/navbar";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import useAuth from "../../hooks/authHook";
 
 function Dashboard() {
-  const navigate = useNavigate();
-  const isAuthenticated = sessionStorage["isAuthenticated"]; // use Context API instead !
-  console.log(isAuthenticated);
+  // const isAuthenticated = sessionStorage["isAuthenticated"]; // use Context API instead !
+
+  const isAuthenticated = useAuth();
   if (!isAuthenticated) {
-    // navigate("/");
     return <Navigate to="/" />;
   }
   return (

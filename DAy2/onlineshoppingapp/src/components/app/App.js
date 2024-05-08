@@ -21,7 +21,14 @@ class App extends Component {
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="" element={<ListOfProducts />} />
-            <Route path="posts" element={<Posts />} />
+            <Route
+              path="posts"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Posts />
+                </Suspense>
+              }
+            />
             <Route path="postdetails/:id" element={<PostDetails />} />
             <Route path="newproduct" element={<NewProductWithRHF />} />
           </Route>
