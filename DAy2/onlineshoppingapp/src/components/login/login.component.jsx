@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,8 +19,10 @@ function Login() {
           className="btn btn-outline-primary"
           onClick={() => {
             axios.get("http://localhost:3600/signin").then(res => {
-              if (res.token) {
-                sessionStorage["token"] = res.token;
+              if (res.data.token) {
+                sessionStorage["token"] = res.data.token;
+                sessionStorage["isAuthenticated"] = true; // use context API
+
                 navigate("/dashboard");
               }
             });

@@ -9,6 +9,7 @@ import ProductDetails from "../productdetails/productdetails.component";
 import { ToastContainer } from "react-toastify";
 import NewProductWithRHF from "../newproduct/newproduct.reacthookform";
 import Login from "../login/login.component";
+import Dashboard from "../dashboard/dashboard.component";
 const Posts = React.lazy(() => import("../posts/posts.functional"));
 
 class App extends Component {
@@ -18,7 +19,14 @@ class App extends Component {
         {/* <a href="/">Home</a> | <a href="/posts">Posts</a> */}
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/productdetails/:id" element={<ProductDetails />} />
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="" element={<ListOfProducts />} />
+            <Route path="posts" element={<Posts />} />
+            <Route path="postdetails/:id" element={<PostDetails />} />
+            <Route path="newproduct" element={<NewProductWithRHF />} />
+          </Route>
+
+          {/* <Route path="/productdetails/:id" element={<ProductDetails />} />
           <Route path="/newproduct" element={<NewProductWithRHF />} />
 
           <Route
@@ -29,7 +37,7 @@ class App extends Component {
               </Suspense>
             }
           />
-          <Route path="/postdetails/:id" element={<PostDetails />} />
+          <Route path="/postdetails/:id" element={<PostDetails />} /> */}
           <Route
             path="*"
             element={
