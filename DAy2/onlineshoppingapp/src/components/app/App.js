@@ -1,7 +1,6 @@
 import ListOfProducts from "../listofproducts/listpfproducts.component";
-
-import React, { Component } from "react";
-import Posts from "../posts/posts.functional";
+import React, { Component, Suspense } from "react";
+// import Posts from "../posts/posts.functional";
 
 // Router
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
@@ -10,6 +9,7 @@ import PostDetails from "../postdetails/postdetails.component";
 import ProductDetails from "../productdetails/productdetails.component";
 import { ToastContainer } from "react-toastify";
 import NewProductWithRHF from "../newproduct/newproduct.reacthookform";
+const Posts = React.lazy(() => import("../posts/posts.functional"));
 
 class App extends Component {
   render() {
@@ -22,7 +22,14 @@ class App extends Component {
           <Route path="/productdetails/:id" element={<ProductDetails />} />
           <Route path="/newproduct" element={<NewProductWithRHF />} />
 
-          <Route path="/posts" element={<Posts />} />
+          <Route
+            path="/posts"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Posts />
+              </Suspense>
+            }
+          />
           <Route path="/postdetails/:id" element={<PostDetails />} />
           <Route
             path="*"
